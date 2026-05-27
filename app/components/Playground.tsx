@@ -8,7 +8,7 @@ import {
 import {
   Database, AlertCircle, Table, FileSpreadsheet,
   RefreshCw, Sparkles, Play, History, ChevronRight, BarChart3, HelpCircle,
-  Mic, MicOff, Download, Code, Terminal, Upload
+  Mic, MicOff, Download, Code, Terminal, Upload, Zap
 } from 'lucide-react';
 
 const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#14b8a6'];
