@@ -186,11 +186,11 @@ export default function Playground({
       y_axis_key: Object.keys(msg.data[0]).find(k => typeof msg.data[0][k] === 'number') || Object.keys(msg.data[0])[0]
     };
 
-    const recommendedType = config.type || 'bar';
+    const recommendedType = (!config.type || config.type === 'none') ? 'bar' : config.type;
     const activeChartType = selectedChartOverride[msgIndex] || recommendedType;
 
-    const xKey = config.x_axis_key || "";
-    const yKey = config.y_axis_key || "";
+    const xKey = config.x_axis_key || Object.keys(msg.data[0])[0] || "";
+    const yKey = config.y_axis_key || Object.keys(msg.data[0]).find(k => typeof msg.data[0][k] === 'number') || Object.keys(msg.data[0])[0] || "";
 
     if (activeChartType === 'none' || !xKey || !yKey) return null;
 
