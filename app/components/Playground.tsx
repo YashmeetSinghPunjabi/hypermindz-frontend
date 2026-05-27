@@ -607,7 +607,7 @@ export default function Playground({
                                 type="button"
                                 onClick={() => setActiveMessageTab({ ...activeMessageTab, [index]: 'table' })}
                                 className={`text-[10px] font-bold px-3 py-1 rounded-md transition-all flex items-center gap-1 ${
-                                  (activeMessageTab[index] || ((msg.visualization_config?.recommended && msg.visualization_config?.type !== 'none' && isChartable(msg.data)) ? 'chart' : 'table')) === 'table'
+                                  (activeMessageTab[index] || (isChartable(msg.data) ? 'chart' : 'table')) === 'table'
                                     ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/50'
                                     : 'text-slate-500 hover:text-slate-800'
                                 }`}
@@ -620,7 +620,7 @@ export default function Playground({
                                   type="button"
                                   onClick={() => setActiveMessageTab({ ...activeMessageTab, [index]: 'chart' })}
                                   className={`text-[10px] font-bold px-3 py-1 rounded-md transition-all flex items-center gap-1 ${
-                                    (activeMessageTab[index] || ((msg.visualization_config?.recommended && msg.visualization_config?.type !== 'none' && isChartable(msg.data)) ? 'chart' : 'table')) === 'chart'
+                                    (activeMessageTab[index] || (isChartable(msg.data) ? 'chart' : 'table')) === 'chart'
                                       ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/50'
                                       : 'text-slate-500 hover:text-slate-800'
                                   }`}
