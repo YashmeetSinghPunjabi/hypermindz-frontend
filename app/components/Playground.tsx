@@ -63,6 +63,8 @@ interface PlaygroundProps {
   isUploading?: boolean;
   onCancelQuery?: () => void;
   onReloadHistoryItem?: (hist: any) => void;
+  selectedAiModel?: string;
+  setSelectedAiModel?: (model: string) => void;
 }
 
 export default function Playground({
@@ -88,7 +90,9 @@ export default function Playground({
   handleFileUpload,
   isUploading,
   onCancelQuery,
-  onReloadHistoryItem
+  onReloadHistoryItem,
+  selectedAiModel,
+  setSelectedAiModel
 }: PlaygroundProps) {
   const [isListening, setIsListening] = React.useState(false);
   const [queryMode, setQueryMode] = React.useState<'nl' | 'sql'>('nl');
@@ -340,6 +344,26 @@ export default function Playground({
                 <RefreshCw className="h-3 w-3" />
                 Reset Chat Context
               </button>
+            )}
+
+            {/* AI Model Toggle */}
+            {setSelectedAiModel && selectedAiModel && (
+              <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 shadow-inner">
+                <button
+                  type="button"
+                  onClick={() => setSelectedAiModel('gemini-2.5-flash')}
+                  className={`px-2.5 py-1 text-[9px] font-bold rounded-md transition-all flex items-center gap-1 ${selectedAiModel === 'gemini-2.5-flash' ? 'bg-white text-indigo-600 shadow-sm border border-slate-250/20' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  <Sparkles className="h-3 w-3" /> Flash
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedAiModel('gemini-2.5-flash-lite')}
+                  className={`px-2.5 py-1 text-[9px] font-bold rounded-md transition-all flex items-center gap-1 ${selectedAiModel === 'gemini-2.5-flash-lite' ? 'bg-white text-indigo-600 shadow-sm border border-slate-250/20' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  <Zap className="h-3 w-3" /> Flash-Lite
+                </button>
+              </div>
             )}
 
             {/* Theme Toggle (Playground Header) */}
