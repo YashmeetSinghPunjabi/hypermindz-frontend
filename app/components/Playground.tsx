@@ -47,7 +47,7 @@ interface PlaygroundProps {
   nlQuery: string;
   setNlQuery: (query: string) => void;
   dynamicSuggestions: any[];
-  handleSendQuery: (query: string) => void;
+  handleSendQuery: (query: string, mode?: string) => void;
   handleClearHistory: () => void;
   queryHistory: any[];
   files: any[];
@@ -526,7 +526,7 @@ export default function Playground({
                         {dynamicSuggestions.map((q, qIdx) => (
                           <button
                             key={qIdx}
-                            onClick={() => handleSendQuery(q.text)}
+                            onClick={() => handleSendQuery(q.text, 'nl')}
                             disabled={isQuerying}
                             className="bg-white hover:bg-indigo-50/15 border border-slate-200 hover:border-indigo-500/50 rounded-2xl p-4 text-left shadow-sm transition-all hover:shadow-md flex flex-col justify-between h-28 group relative overflow-hidden"
                           >
@@ -769,7 +769,7 @@ export default function Playground({
                   {dynamicSuggestions.map((q, qIdx) => (
                     <button
                       key={qIdx}
-                      onClick={() => handleSendQuery(q.text)}
+                      onClick={() => handleSendQuery(q.text, 'nl')}
                       disabled={isQuerying}
                       className="bg-indigo-50 hover:bg-indigo-100/70 border border-indigo-100 text-[10px] font-bold text-indigo-600 px-2.5 py-1 rounded-full transition-all"
                     >
@@ -783,7 +783,7 @@ export default function Playground({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleSendQuery(nlQuery);
+                handleSendQuery(nlQuery, queryMode);
               }}
               className="flex gap-3 items-center"
             >

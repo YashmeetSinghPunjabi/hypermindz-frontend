@@ -465,7 +465,7 @@ export default function AnalyticsDashboard() {
 
   // --- NL-to-SQL Execution Pipeline Handlers ---
 
-  const handleSendQuery = async (queryText: string) => {
+  const handleSendQuery = async (queryText: string, mode: string = 'nl') => {
     if (!queryText.trim() || !activeFile || !token) return;
 
     const currentFileId = activeFile.id;
@@ -498,6 +498,7 @@ export default function AnalyticsDashboard() {
         body: JSON.stringify({
           file_id: currentFileId,
           natural_language_query: userQuery,
+          query_mode: mode,
           ai_model: selectedAiModel
         }),
         signal: controller.signal
