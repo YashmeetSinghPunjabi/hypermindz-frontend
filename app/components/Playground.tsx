@@ -241,8 +241,8 @@ export default function Playground({
           </div>
         </div>
 
-        <div className="w-full h-64 pt-2 font-medium text-[10px] text-slate-500">
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="w-full h-64 pt-2 font-medium text-[10px] text-slate-500" style={{ minWidth: 0, minHeight: 0 }}>
+          <ResponsiveContainer width="99%" height={240}>
             {activeChartType === 'bar' ? (
               <RechartsBarChart data={formattedData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
                 <XAxis dataKey={actualXKey} stroke="#94a3b8" tickLine={false} />
@@ -607,7 +607,7 @@ export default function Playground({
                                 type="button"
                                 onClick={() => setActiveMessageTab({ ...activeMessageTab, [index]: 'table' })}
                                 className={`text-[10px] font-bold px-3 py-1 rounded-md transition-all flex items-center gap-1 ${
-                                  (activeMessageTab[index] || (isChartable(msg.data) ? 'chart' : 'table')) === 'table'
+                                  (activeMessageTab[index] || (msg.visualization_config?.recommended && msg.visualization_config?.type !== 'none' && isChartable(msg.data) ? 'chart' : 'table')) === 'table'
                                     ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/50'
                                     : 'text-slate-500 hover:text-slate-800'
                                 }`}
@@ -620,7 +620,7 @@ export default function Playground({
                                   type="button"
                                   onClick={() => setActiveMessageTab({ ...activeMessageTab, [index]: 'chart' })}
                                   className={`text-[10px] font-bold px-3 py-1 rounded-md transition-all flex items-center gap-1 ${
-                                    (activeMessageTab[index] || (isChartable(msg.data) ? 'chart' : 'table')) === 'chart'
+                                    (activeMessageTab[index] || (msg.visualization_config?.recommended && msg.visualization_config?.type !== 'none' && isChartable(msg.data) ? 'chart' : 'table')) === 'chart'
                                       ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/50'
                                       : 'text-slate-500 hover:text-slate-800'
                                   }`}
